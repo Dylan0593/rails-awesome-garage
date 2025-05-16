@@ -13,9 +13,12 @@ Rails.application.routes.draw do
   # root "posts#index"
 
 
-resources :cars, except: [:edit, :update, :destroy]
+  resources :cars, except: [:edit, :update, :destroy] do
+    resources :reviews, only: [:create]
+    resources :favourites, only: [:create]
+  end
+
+  resources :review, only: [:destroy]
+  resources :favourites, only: [:destroy, :index]
 
 end
-
-
-
